@@ -1,0 +1,304 @@
+/* Terminal & CRT Theme Styles */
+:root {
+  --bg-color: #07090e;
+  --terminal-bg: rgba(13, 17, 23, 0.94);
+  --terminal-border: #1f293d;
+  --text-main: #38ef7d;
+  --text-bright: #52ffa8;
+  --text-cyan: #00f3ff;
+  --text-amber: #ffb86c;
+  --text-muted: #5a6982;
+  --text-dim: #8b9bb4;
+  --accent-glow: rgba(56, 239, 125, 0.35);
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, Monaco, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  overflow-x: hidden;
+  position: relative;
+  text-shadow: 0 0 6px var(--accent-glow);
+}
+
+/* CRT Screen Effect Overlay */
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+  background: 
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%),
+    radial-gradient(circle at center, transparent 65%, rgba(0, 0, 0, 0.8) 100%);
+  background-size: 100% 3px, 100% 100%;
+}
+
+/* Subtle CRT scanline flicker */
+@keyframes flicker {
+  0% { opacity: 0.97; }
+  50% { opacity: 1; }
+  100% { opacity: 0.98; }
+}
+
+body::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: rgba(18, 16, 16, 0.04);
+  opacity: 0;
+  z-index: 1000;
+  pointer-events: none;
+  animation: flicker 0.15s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after {
+    animation: none;
+  }
+}
+
+/* Terminal Window Container */
+.terminal-window {
+  width: 100%;
+  max-width: 860px;
+  background: var(--terminal-bg);
+  border: 1px solid var(--terminal-border);
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 239, 125, 0.08);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+}
+
+/* Terminal Top Bar */
+.terminal-header {
+  background: #0f141f;
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--terminal-border);
+  user-select: none;
+}
+
+.terminal-controls {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.control-btn {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.control-btn.close { background: #ff5f56; }
+.control-btn.minimize { background: #ffbd2e; }
+.control-btn.maximize { background: #27c93f; }
+
+.terminal-title {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.terminal-badge {
+  color: var(--text-amber);
+  font-size: 0.72rem;
+  border: 1px solid rgba(255, 184, 108, 0.3);
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+}
+
+/* Terminal Body Content */
+.terminal-body {
+  padding: 1.5rem;
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
+  line-height: 1.6;
+}
+
+/* ASCII Banner */
+.ascii-banner-wrapper {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.ascii-art {
+  font-family: var(--font-mono);
+  font-size: clamp(0.55rem, 1.4vw, 0.85rem);
+  line-height: 1.15;
+  color: var(--text-bright);
+  text-shadow: 0 0 10px rgba(82, 255, 168, 0.5);
+  white-space: pre;
+}
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Boot & System Info Section */
+.sys-info {
+  margin-bottom: 1.5rem;
+  border-left: 2px solid rgba(56, 239, 125, 0.4);
+  padding-left: 0.85rem;
+}
+
+.sys-line {
+  color: var(--text-dim);
+  font-size: 0.82rem;
+}
+
+.sys-tag {
+  color: var(--text-cyan);
+}
+
+.sys-ok {
+  color: var(--text-bright);
+  font-weight: bold;
+}
+
+/* Terminal Command & Response Blocks */
+.cmd-block {
+  margin-bottom: 1.25rem;
+}
+
+.prompt-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.prompt-user {
+  color: var(--text-cyan);
+  font-weight: 600;
+}
+
+.prompt-path {
+  color: var(--text-amber);
+}
+
+.prompt-char {
+  color: var(--text-dim);
+}
+
+.cmd-text {
+  color: #fff;
+  font-weight: 500;
+}
+
+.cmd-output {
+  color: var(--text-main);
+  padding-left: 1.25rem;
+}
+
+/* Interactive link cards */
+.link-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.terminal-link {
+  color: var(--text-bright);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background: rgba(56, 239, 125, 0.05);
+  border: 1px solid rgba(56, 239, 125, 0.15);
+  transition: all 0.2s ease-in-out;
+  width: fit-content;
+}
+
+.terminal-link:hover, .terminal-link:focus-visible {
+  background: rgba(56, 239, 125, 0.15);
+  border-color: var(--text-bright);
+  box-shadow: 0 0 12px rgba(56, 239, 125, 0.3);
+  transform: translateX(4px);
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminal-link:hover, .terminal-link:focus-visible {
+    transform: none;
+  }
+}
+
+/* Blinking cursor */
+.cursor {
+  display: inline-block;
+  width: 9px;
+  height: 1.1em;
+  vertical-align: text-bottom;
+  background-color: var(--text-bright);
+  margin-left: 4px;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* Footer status bar */
+.terminal-footer {
+  margin-top: 2rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--terminal-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.status-pulse {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--text-bright);
+  box-shadow: 0 0 8px var(--text-bright);
+  margin-right: 6px;
+}

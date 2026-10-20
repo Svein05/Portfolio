@@ -1,0 +1,114 @@
+---
+import '../styles/terminal.css';
+
+const githubUsername = "Svein05";
+const githubUrl = `https://github.com/${githubUsername}`;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Svein05 - Portafolio Personal en formato Terminal ASCII" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>" />
+    <title>{githubUsername} // Terminal Portfolio</title>
+  </head>
+  <body>
+    <!-- CRT Overlay with Scanlines -->
+    <div class="crt-overlay" aria-hidden="true"></div>
+
+    <main class="terminal-window">
+      <!-- Terminal Header / Window Bar -->
+      <header class="terminal-header">
+        <div class="terminal-controls" aria-hidden="true">
+          <span class="control-btn close"></span>
+          <span class="control-btn minimize"></span>
+          <span class="control-btn maximize"></span>
+        </div>
+        <div class="terminal-title">svein-terminal://session-01</div>
+        <div class="terminal-badge">READY</div>
+      </header>
+
+      <!-- Terminal Body Content -->
+      <div class="terminal-body">
+        <!-- ASCII Banner -->
+        <div class="ascii-banner-wrapper">
+          <h1 class="sr-only">{githubUsername}</h1>
+          <pre class="ascii-art" aria-hidden="true">
+   ____            _         ___  ____  
+  / ___|_   _____ (_)_ __   / _ \| ___| 
+  \___ \ \ / / _ \| | '_ \ | | | |___ \ 
+   ___) \ V /  __/| | | | || |_| |___) |
+  |____/ \_/ \___||_|_| |_(_)___/|____/ 
+          </pre>
+        </div>
+
+        <!-- System Diagnostics / Boot Info -->
+        <section class="sys-info">
+          <p class="sys-line"><span class="sys-tag">[SYS.INIT]</span> Kernel initialized: Astro 7.4.x (Zero-JS SSG mode) ... <span class="sys-ok">[OK]</span></p>
+          <p class="sys-line"><span class="sys-tag">[SYS.HOST]</span> Protocol: Secure Terminal Shell ... <span class="sys-ok">[OK]</span></p>
+          <p class="sys-line"><span class="sys-tag">[SYS.USER]</span> Authenticated profile: <strong>{githubUsername}</strong></p>
+        </section>
+
+        <!-- Command 1: whoami -->
+        <div class="cmd-block">
+          <div class="prompt-line">
+            <span class="prompt-user">svein@dev</span><span class="prompt-char">:</span><span class="prompt-path">~</span><span class="prompt-char">$</span>
+            <span class="cmd-text">whoami</span>
+          </div>
+          <div class="cmd-output">
+            <p>❯ {githubUsername} — Software Developer & Problem Solver.</p>
+          </div>
+        </div>
+
+        <!-- Command 2: cat status.txt -->
+        <div class="cmd-block">
+          <div class="prompt-line">
+            <span class="prompt-user">svein@dev</span><span class="prompt-char">:</span><span class="prompt-path">~</span><span class="prompt-char">$</span>
+            <span class="cmd-text">cat status.txt</span>
+          </div>
+          <div class="cmd-output">
+            <p>❯ [STATUS: ONLINE] Portafolio personal en desarrollo activo.</p>
+            <p style="color: var(--text-dim); margin-top: 0.25rem;">(Próximamente: proyectos destacados, stack tecnológico y vías de contacto directo).</p>
+          </div>
+        </div>
+
+        <!-- Command 3: links -->
+        <div class="cmd-block">
+          <div class="prompt-line">
+            <span class="prompt-user">svein@dev</span><span class="prompt-char">:</span><span class="prompt-path">~</span><span class="prompt-char">$</span>
+            <span class="cmd-text">ls -la ./links</span>
+          </div>
+          <div class="cmd-output">
+            <div class="link-list">
+              <a href={githubUrl} target="_blank" rel="noopener noreferrer" class="terminal-link">
+                <span>[🔗 GitHub]</span>
+                <span>{githubUrl}</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Command Prompt with Cursor -->
+        <div class="cmd-block">
+          <div class="prompt-line">
+            <span class="prompt-user">svein@dev</span><span class="prompt-char">:</span><span class="prompt-path">~</span><span class="prompt-char">$</span>
+            <span id="interactive-text" class="cmd-text">system --awaiting-input</span>
+            <span class="cursor" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <!-- Terminal Footer -->
+        <footer class="terminal-footer">
+          <div>
+            <span class="status-pulse" aria-hidden="true"></span>
+            <span>SYSTEM STATUS: NORMAL</span>
+          </div>
+          <div>ASTRO POWERED // UTF-8</div>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>
