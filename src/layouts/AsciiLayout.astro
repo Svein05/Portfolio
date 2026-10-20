@@ -1,0 +1,80 @@
+---
+import '../styles/terminal.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Svein // Software Developer", 
+  description = "Portafolio profesional en formato puro ASCII / TUI" 
+} = Astro.props;
+
+const pathname = Astro.url.pathname;
+const normalizedPath = pathname.replace(/\/$/, '') || '/';
+
+const navItems = [
+  { href: "/", label: "[1] INICIO", path: "/" },
+  { href: "/proyectos", label: "[2] PROYECTOS", path: "/proyectos" },
+  { href: "/sobre-mi", label: "[3] SOBRE MÍ", path: "/sobre-mi" },
+  { href: "/contacto", label: "[4] CONTACTO", path: "/contacto" }
+];
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="ascii-container">
+      <!-- Universal ASCII Header & Navigation -->
+      <header class="ascii-header">
+        <nav class="ascii-nav-box" aria-label="Navegación del sistema">
+          <a href="/" class="ascii-brand">
+            <span class="text-green">&gt;</span>
+            <span>SVEIN.DEV</span>
+            <span class="text-dim">// TUI-PORTFOLIO</span>
+          </a>
+
+          <ul class="ascii-nav-tabs">
+            {navItems.map((item) => {
+              const isActive = normalizedPath === item.path;
+              return (
+                <li class={`ascii-nav-item ${isActive ? 'active' : ''}`}>
+                  <a href={item.href} aria-current={isActive ? 'page' : undefined}>
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Main Page Content -->
+      <main>
+        <slot />
+      </main>
+
+      <!-- Universal ASCII Footer -->
+      <footer class="ascii-footer">
+        <div>
+          <span class="text-green">●</span>
+          <span>SISTEMA: EN LÍNEA</span>
+          <span class="text-dim"> // PROTOCOLO: HTTPS</span>
+        </div>
+        <div>
+          <span>GITHUB: </span>
+          <a href="https://github.com/Svein05" target="_blank" rel="noopener noreferrer">@Svein05</a>
+          <span class="text-dim"> // ASTRO 5</span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

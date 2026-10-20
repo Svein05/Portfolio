@@ -1,0 +1,130 @@
+---
+import AsciiLayout from '../layouts/AsciiLayout.astro';
+
+const skillMatrix = [
+  {
+    area: "DESARROLLO FRONTEND",
+    tools: "Astro, TypeScript, JavaScript (ESNext), HTML5 Semántico, CSS Grid & Flexbox",
+    focus: "Rendimiento, accesibilidad web, interfaces TUI/minimalistas, cero bloatware"
+  },
+  {
+    area: "DESARROLLO BACKEND",
+    tools: "Node.js, Express, Python, REST APIs, Autenticación y Middleware",
+    focus: "Arquitectura limpia, validación de datos, diseño de APIs modulares"
+  },
+  {
+    area: "DEVOPS & HERRAMIENTAS",
+    tools: "Git, GitHub, Cloudflare Pages/Workers, Linux/Terminal, Docker",
+    focus: "Control de versiones con Git Flow, despliegue continuo (CI/CD), entornos aislados"
+  }
+];
+
+const timeline = [
+  {
+    period: "2024 - PRESENTE",
+    role: "Software Developer // Proyectos Independientes",
+    details: "Desarrollo de herramientas web modernas, optimización de flujos de trabajo e investigación de arquitecturas estáticas de alto rendimiento."
+  },
+  {
+    period: "2023 - 2024",
+    role: "Desarrollo Backend & Integraciones",
+    details: "Implementación de servicios REST, manejo de bases de datos, automatización de tareas con scripts en Python y buenas prácticas de ingeniería de software."
+  }
+];
+---
+
+<AsciiLayout title="Svein // Sobre Mí (CV)" description="Perfil profesional, trayectoria y matriz de habilidades técnicas">
+  <!-- Profile & Statement Box -->
+  <section class="ascii-box">
+    <div class="ascii-box-header">
+      <span class="ascii-box-title">
+        <span class="text-green">&gt;</span>
+        <span>PERFIL PROFESIONAL // CV</span>
+      </span>
+      <span>EXP_FILE: 005.TXT</span>
+    </div>
+    <div class="ascii-box-body">
+      <h2 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Filosofía de Ingeniería</h2>
+      <p class="text-muted" style="margin-bottom: 1rem;">
+        Creo en el software construido con intención y sobriedad. Priorizo el código legible, el tipado estricto y la eficiencia sobre modas pasajeras o dependencias innecesarias. Mi objetivo es entregar soluciones que sean tan robustas en su lógica como rápidas y directas para el usuario final.
+      </p>
+
+      <div style="border-left: 2px solid var(--accent-green); padding-left: 1rem; margin: 1rem 0;">
+        <p class="text-main">
+          <strong>Principios de trabajo:</strong>
+        </p>
+        <p class="text-muted" style="margin-top: 0.35rem;">
+          • <strong>Idempotencia y orden:</strong> Flujos controlados con Git Flow estricto y commits semánticos.<br />
+          • <strong>Rendimiento nativo:</strong> Aprovechar las capacidades nativas de la web y el runtime antes de añadir paquetes externos.<br />
+          • <strong>Mantenibilidad:</strong> Código documentado, modular y fácil de auditar.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Skills Matrix Box -->
+  <section class="ascii-box">
+    <div class="ascii-box-header">
+      <span class="ascii-box-title">
+        <span class="text-cyan">#</span>
+        <span>MATRIZ DE HABILIDADES TÉCNICAS</span>
+      </span>
+      <span>COMPETENCIAS CORE</span>
+    </div>
+    <div class="ascii-box-body" style="padding: 0;">
+      <div class="ascii-table-responsive" style="margin: 0;">
+        <table class="ascii-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;">Área de Enfoque</th>
+              <th style="width: 40%;">Tecnologías & Herramientas</th>
+              <th style="width: 35%;">Especialización</th>
+            </tr>
+          </thead>
+          <tbody>
+            {skillMatrix.map((item) => (
+              <tr>
+                <td><strong class="text-main">{item.area}</strong></td>
+                <td class="text-muted">{item.tools}</td>
+                <td class="text-dim">{item.focus}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Career Milestones Box -->
+  <section class="ascii-box">
+    <div class="ascii-box-header">
+      <span class="ascii-box-title">
+        <span class="text-amber">&gt;</span>
+        <span>TRAYECTORIA & HITOS</span>
+      </span>
+      <span>HISTORIAL</span>
+    </div>
+    <div class="ascii-box-body" style="padding: 0;">
+      <div class="ascii-table-responsive" style="margin: 0;">
+        <table class="ascii-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;">Periodo</th>
+              <th style="width: 35%;">Rol / Actividad</th>
+              <th style="width: 40%;">Responsabilidades Clave</th>
+            </tr>
+          </thead>
+          <tbody>
+            {timeline.map((entry) => (
+              <tr>
+                <td><span class="text-cyan">{entry.period}</span></td>
+                <td><strong class="text-main">{entry.role}</strong></td>
+                <td class="text-muted">{entry.details}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</AsciiLayout>
