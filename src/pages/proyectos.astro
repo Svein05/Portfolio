@@ -1,0 +1,105 @@
+---
+import AsciiLayout from '../layouts/AsciiLayout.astro';
+
+const projects = [
+  {
+    id: "PROY_001",
+    name: "Terminal Portfolio (TUI)",
+    type: "Web Application / Static Site",
+    stack: ["Astro 5", "TypeScript", "CSS Monospace", "Cloudflare Pages"],
+    description: "Portafolio web multi-página diseñado bajo estándares estrictos de TUI (Text User Interface). Optimizado para velocidad instantánea, cero JavaScript innecesario y estética de ingeniería sobria.",
+    github: "https://github.com/Svein05/Portfolio",
+    demo: "/",
+    status: "ACTIVO // PRODUCCIÓN"
+  },
+  {
+    id: "PROY_002",
+    name: "Core Platform & Data API",
+    type: "Backend Service / Modular Architecture",
+    stack: ["TypeScript", "Node.js", "REST APIs", "Clean Architecture"],
+    description: "Servicio backend desacoplado con arquitectura en capas, control estricto de tipado y validación de esquemas. Diseñado para alta disponibilidad y mantenibilidad a largo plazo.",
+    github: "https://github.com/Svein05",
+    demo: null,
+    status: "EN DESARROLLO"
+  },
+  {
+    id: "PROY_003",
+    name: "Dev Tooling & Automation CLI",
+    type: "CLI Tools & DevOps Pipeline",
+    stack: ["Python", "Shell / Bash", "Docker", "Git Flow"],
+    description: "Herramientas de soporte y automatización de despliegues. Automatiza validaciones previas a commit, linters y generación de entornos aislados reproducibles.",
+    github: "https://github.com/Svein05",
+    demo: null,
+    status: "COMPLETADO"
+  }
+];
+---
+
+<AsciiLayout title="Svein // Proyectos" description="Catálogo de proyectos de software y aplicaciones técnicas">
+  <div class="ascii-box" style="margin-bottom: 2rem;">
+    <div class="ascii-box-header">
+      <span class="ascii-box-title">
+        <span class="text-green">&gt;</span>
+        <span>CATÁLOGO DE PROYECTOS</span>
+      </span>
+      <span>TOTAL REGISTRADOS: {projects.length}</span>
+    </div>
+    <div class="ascii-box-body">
+      <p class="text-muted">
+        A continuación se detalla el archivo de proyectos de software desarrollados, destacando stack tecnológico, propósito de arquitectura y enlaces a código fuente.
+      </p>
+    </div>
+  </div>
+
+  {projects.map((proj) => (
+    <article class="ascii-box">
+      <div class="ascii-box-header">
+        <span class="ascii-box-title">
+          <span class="text-cyan">[{proj.id}]</span>
+          <span>{proj.name}</span>
+        </span>
+        <span class="text-muted">{proj.status}</span>
+      </div>
+      <div class="ascii-box-body">
+        <p style="margin-bottom: 1rem;">{proj.description}</p>
+
+        <!-- Technical specifications table -->
+        <div class="ascii-table-responsive">
+          <table class="ascii-table">
+            <tbody>
+              <tr>
+                <td style="width: 25%;" class="text-muted">TIPO</td>
+                <td>{proj.type}</td>
+              </tr>
+              <tr>
+                <td class="text-muted">TECNOLOGÍAS</td>
+                <td>
+                  <div class="ascii-tag-list" style="margin: 0;">
+                    {proj.stack.map((item) => (
+                      <span class="ascii-tag">{item}</span>
+                    ))}
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-muted">RECURSOS</td>
+                <td>
+                  <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                    <a href={proj.github} target="_blank" rel="noopener noreferrer">
+                      [ REPOSITORIO EN GITHUB ↗ ]
+                    </a>
+                    {proj.demo && (
+                      <a href={proj.demo} class="text-green">
+                        [ VISTA EN VIVO ↗ ]
+                      </a>
+                    )}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </article>
+  ))}
+</AsciiLayout>

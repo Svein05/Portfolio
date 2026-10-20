@@ -1,298 +1,122 @@
 ---
-import '../styles/terminal.css';
-
-const profile = {
-  name: "Svein",
-  githubUsername: "Svein05",
-  title: "Software Developer & Builder",
-  bio: "Desarrollador enfocado en crear aplicaciones web modernas, rápidas y con identidades visuales únicas. Especializado en arquitecturas limpias, rendimiento y diseño interactivo.",
-  githubUrl: "https://github.com/Svein05",
-  contactEmail: "contacto@svein.dev", // Fácilmente editable
-};
-
-const projects = [
-  {
-    id: "PROJ_01",
-    title: "Terminal Cyber Portfolio",
-    description: "Portafolio personal con arquitectura moderna en Astro 5 y diseño inspirado en sistemas terminal de alta gama. Despliegue continuo en Cloudflare Pages.",
-    tags: ["Astro 5", "TypeScript", "CSS Grid", "Cloudflare Pages"],
-    github: "https://github.com/Svein05/Portfolio",
-    demo: "#",
-    featured: true,
-  },
-  {
-    id: "PROJ_02",
-    title: "Fullstack Web Platform",
-    description: "Aplicación web modular enfocada en rendimiento, manejo de estado robusto e interfaces de usuario intuitivas y accesibles.",
-    tags: ["TypeScript", "Node.js", "REST APIs", "Modern UI"],
-    github: "https://github.com/Svein05",
-    demo: "#",
-    featured: false,
-  },
-  {
-    id: "PROJ_03",
-    title: "Developer Tools & Automation",
-    description: "Scripts y herramientas orientadas a optimizar flujos de trabajo, automatización de tareas y procesamiento eficiente de datos.",
-    tags: ["Python", "Git Flow", "Docker", "Linux"],
-    github: "https://github.com/Svein05",
-    demo: "#",
-    featured: false,
-  }
-];
-
-const skillCategories = [
-  {
-    category: "Frontend & UI",
-    skills: ["Astro", "JavaScript (ESNext)", "TypeScript", "HTML5 & CSS3 Moderno", "Responsive Design", "Web Accessibility"]
-  },
-  {
-    category: "Backend & Datos",
-    skills: ["Node.js", "Express", "REST APIs", "Python", "Manejo de Bases de Datos"]
-  },
-  {
-    category: "Herramientas & Entornos",
-    skills: ["Git & GitHub", "Cloudflare Pages / Workers", "Terminal / Shell", "Linux", "CI/CD Básico"]
-  }
-];
+import AsciiLayout from '../layouts/AsciiLayout.astro';
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={`Portafolio y CV de ${profile.name} (@${profile.githubUsername}) - Software Developer`} />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
-    <title>{profile.name} // Software Developer Portfolio</title>
-  </head>
-  <body>
-    <!-- Subtle CRT Scanline overlay -->
-    <div class="crt-scanlines" aria-hidden="true"></div>
-
-    <!-- Header / Navbar -->
-    <header class="site-header">
-      <div class="container nav-container">
-        <a href="#inicio" class="logo-brand">
-          <span class="logo-bracket">[</span>
-          <span>{profile.name}.DEV</span>
-          <span class="logo-bracket">]</span>
-        </a>
-
-        <nav aria-label="Navegación principal">
-          <ul class="nav-links">
-            <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
-            <li><a href="#sobre-mi" class="nav-link">Sobre mí</a></li>
-            <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
-            <li><a href="#contacto" class="nav-link">Contacto</a></li>
-          </ul>
-        </nav>
-
-        <div class="nav-socials">
-          <a href={profile.githubUrl} target="_blank" rel="noopener noreferrer" class="icon-button" aria-label="Perfil de GitHub">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </header>
-
-    <main class="container">
-      <!-- Hero Section -->
-      <section id="inicio" class="hero-section">
-        <div class="hero-content">
-          <div class="status-badge">
-            <span class="pulse-dot" aria-hidden="true"></span>
-            <span>DISPONIBLE PARA PROYECTOS</span>
-          </div>
-
-          <h1 class="hero-title">
-            Hola, soy <span class="highlight">{profile.name}</span>
-          </h1>
-
-          <p class="hero-subtitle">
-            &gt; {profile.title}
-          </p>
-
-          <p class="hero-description">
-            {profile.bio}
-          </p>
-
-          <div class="hero-actions">
-            <a href="#proyectos" class="btn-primary">
-              <span>Explorar Proyectos</span>
-              <span aria-hidden="true">↓</span>
-            </a>
-            <a href="#contacto" class="btn-secondary">
-              <span>Contactar</span>
-              <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Technical ASCII Card Display -->
-        <aside class="hero-card" aria-label="Identidad técnica">
-          <div class="hero-card-header">
-            <span>TERMINAL_ID: #005</span>
-            <span>OS: ARCH // SYSTEM OK</span>
-          </div>
-          <pre class="hero-ascii-banner" aria-hidden="true">
+<AsciiLayout title="Svein // Inicio - Portafolio TUI">
+  <!-- Hero / Identity Box -->
+  <section class="ascii-box">
+    <div class="ascii-box-header">
+      <span class="ascii-box-title">
+        <span class="text-green">#</span>
+        <span>IDENTIFICACIÓN DEL SISTEMA</span>
+      </span>
+      <span>SYS_ID: 0x05 // DISPONIBLE</span>
+    </div>
+    <div class="ascii-box-body">
+      <!-- Clean ASCII Logo -->
+      <div class="ascii-art-wrapper" aria-hidden="true">
    ____            _         ___  ____  
   / ___|_   _____ (_)_ __   / _ \| ___| 
   \___ \ \ / / _ \| | '_ \ | | | |___ \ 
    ___) \ V /  __/| | | | || |_| |___) |
   |____/ \_/ \___||_|_| |_(_)___/|____/ 
-          </pre>
-          <div class="hero-card-meta">
-            <div class="meta-row">
-              <span>GITHUB_HANDLE:</span>
-              <span class="meta-val">@{profile.githubUsername}</span>
-            </div>
-            <div class="meta-row">
-              <span>RUNTIME_CORE:</span>
-              <span class="meta-val">Astro 5 SSG</span>
-            </div>
-            <div class="meta-row">
-              <span>CODE_STATUS:</span>
-              <span class="meta-val">PRODUCTION READY</span>
-            </div>
-          </div>
-        </aside>
-      </section>
-
-      <!-- Projects Section -->
-      <section id="proyectos" class="section-wrapper">
-        <p class="section-tagline">// 01. PORTAFOLIO DE TRABAJOS</p>
-        <h2 class="section-heading">Proyectos Destacados</h2>
-        <p class="section-desc">
-          Una selección de proyectos personales y soluciones de software que he desarrollado con enfoque en rendimiento, arquitectura y experiencia de usuario.
-        </p>
-
-        <div class="projects-grid">
-          {projects.map((proj) => (
-            <article class="project-card">
-              <div>
-                <div class="project-top">
-                  <span class="project-index">[{proj.id}]</span>
-                  <span>{proj.featured ? "★ FEATURED" : "ACTIVE"}</span>
-                </div>
-                <h3 class="project-title">{proj.title}</h3>
-                <p class="project-description">{proj.description}</p>
-                <div class="tech-tags">
-                  {proj.tags.map((tag) => (
-                    <span class="tech-tag">{tag}</span>
-                  ))}
-                </div>
-              </div>
-
-              <div class="project-links">
-                <a href={proj.github} target="_blank" rel="noopener noreferrer" class="card-link github" aria-label={`Código fuente de ${proj.title} en GitHub`}>
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                  </svg>
-                  <span>GitHub</span>
-                </a>
-                {proj.demo !== "#" && (
-                  <a href={proj.demo} target="_blank" rel="noopener noreferrer" class="card-link demo" aria-label={`Ver demo de ${proj.title}`}>
-                    <span>Demo</span>
-                    <span aria-hidden="true">↗</span>
-                  </a>
-                )}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <!-- About Me & Skills Section (CV) -->
-      <section id="sobre-mi" class="section-wrapper">
-        <p class="section-tagline">// 02. PERFIL PROFESIONAL & CV</p>
-        <h2 class="section-heading">Sobre Mí & Habilidades</h2>
-
-        <div class="about-grid">
-          <div class="bio-card">
-            <h3 class="project-title" style="margin-bottom: 1rem;">Mi Enfoque de Desarrollo</h3>
-            <p class="bio-text">
-              Me apasiona la tecnología, el desarrollo de software estructurado y la creación de interfaces limpias, modernas y eficientes. Disfruto resolver problemas complejos y transformar requerimientos técnicos en productos sólidos y agradables de usar.
-            </p>
-            <p class="bio-text">
-              Combino el rigor de las buenas prácticas de ingeniería (control de versiones con Git Flow, pruebas y optimización) con una constante curiosidad por las herramientas web más veloces y contemporáneas.
-            </p>
-
-            <ul class="bio-highlights">
-              <li class="bio-item">
-                <span class="bio-item-bullet">❯</span>
-                <span>Código limpio, modular y fuertemente tipado.</span>
-              </li>
-              <li class="bio-item">
-                <span class="bio-item-bullet">❯</span>
-                <span>Prioridad en rendimiento, SEO y accesibilidad real.</span>
-              </li>
-              <li class="bio-item">
-                <span class="bio-item-bullet">❯</span>
-                <span>Mentalidad de aprendizaje continuo y adaptación rápida.</span>
-              </li>
-            </ul>
-          </div>
-
-          <div id="habilidades" class="skills-wrapper">
-            {skillCategories.map((cat) => (
-              <div class="skill-category-card">
-                <h4 class="skill-category-title">// {cat.category}</h4>
-                <div class="skill-pills">
-                  {cat.skills.map((skill) => (
-                    <span class="skill-pill">
-                      <span>•</span>
-                      <span>{skill}</span>
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact Section -->
-      <section id="contacto" class="section-wrapper">
-        <div class="contact-box">
-          <p class="section-tagline" style="margin-bottom: 0.5rem;">// 03. INICIAR COMUNICACIÓN</p>
-          <h2 class="contact-title">¿Tienes un proyecto en mente?</h2>
-          <p class="contact-subtitle">
-            Estoy abierto a nuevas oportunidades, colaboraciones o proyectos interesantes. Conectemos a través de mis redes o revisa mi código en GitHub.
-          </p>
-
-          <div class="contact-links">
-            <a href={profile.githubUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
-              <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: currentColor;" aria-hidden="true">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-              </svg>
-              <span>GitHub / {profile.githubUsername}</span>
-            </a>
-
-            <a href={`mailto:${profile.contactEmail}`} class="btn-secondary">
-              <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: currentColor;" aria-hidden="true">
-                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-              </svg>
-              <span>Enviar Correo</span>
-            </a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- Site Footer -->
-    <footer class="site-footer">
-      <div class="container footer-content">
-        <div>
-          <span>© {new Date().getFullYear()} {profile.name} (@{profile.githubUsername}).</span>
-          <span style="margin-left: 0.5rem; color: var(--text-dim);">Todos los derechos reservados.</span>
-        </div>
-        <div>
-          <span>Impulsado con </span>
-          <span class="footer-tech">Astro 5 & CSS Moderno</span>
-        </div>
       </div>
-    </footer>
-  </body>
-</html>
+
+      <h1 style="font-size: 1.4rem; margin-bottom: 0.5rem;">
+        Svein <span class="text-dim">// Software Developer</span>
+      </h1>
+
+      <p class="text-muted" style="max-width: 720px; margin-bottom: 1.25rem;">
+        Desarrollador de software enfocado en la construcción de sistemas eficientes, interfaces sobrias y código limpio. Especializado en arquitecturas web modernas, APIs robustas y rendimiento de alto nivel.
+      </p>
+
+      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+        <a href="/proyectos" class="ascii-btn">
+          <span>&gt; EXPLORAR PROYECTOS</span>
+        </a>
+        <a href="/sobre-mi" class="ascii-btn secondary">
+          <span>&gt; LEER CV / PERFIL</span>
+        </a>
+        <a href="/contacto" class="ascii-btn secondary">
+          <span>&gt; CONTACTAR</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Directory / Menu Box -->
+  <section class="ascii-box">
+    <div class="ascii-box-header">
+      <span class="ascii-box-title">
+        <span class="text-cyan">&gt;</span>
+        <span>DIRECTORIO DE SECCIONES</span>
+      </span>
+      <span>4 RUTAS DISPONIBLES</span>
+    </div>
+    <div class="ascii-box-body" style="padding: 0;">
+      <div class="ascii-table-responsive" style="margin: 0;">
+        <table class="ascii-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;">Ruta</th>
+              <th style="width: 50%;">Descripción</th>
+              <th style="width: 25%;">Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="text-cyan">/proyectos</span></td>
+              <td class="text-muted">Catálogo completo de proyectos con especificaciones técnicas y enlaces de código.</td>
+              <td><a href="/proyectos">[ ACCEDER ➔ ]</a></td>
+            </tr>
+            <tr>
+              <td><span class="text-cyan">/sobre-mi</span></td>
+              <td class="text-muted">Currículum técnico, filosofía de ingeniería y matriz de habilidades clasificadas.</td>
+              <td><a href="/sobre-mi">[ ACCEDER ➔ ]</a></td>
+            </tr>
+            <tr>
+              <td><span class="text-cyan">/contacto</span></td>
+              <td class="text-muted">Vías de comunicación directa, perfil de GitHub y disponibilidad profesional.</td>
+              <td><a href="/contacto">[ ACCEDER ➔ ]</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Telemetry / Environment Specs Box -->
+  <section class="ascii-box">
+    <div class="ascii-box-header">
+      <span class="ascii-box-title">
+        <span class="text-amber">i</span>
+        <span>ESPECIFICACIONES DEL ENTORNO</span>
+      </span>
+      <span>INFO TÉCNICA</span>
+    </div>
+    <div class="ascii-box-body">
+      <div class="ascii-table-responsive" style="margin: 0;">
+        <table class="ascii-table">
+          <tbody>
+            <tr>
+              <td style="width: 30%;" class="text-muted">FRAMEWORK</td>
+              <td>Astro 5 (Static Site Generation / SSG)</td>
+            </tr>
+            <tr>
+              <td class="text-muted">ESTILO & UI</td>
+              <td>TUI / Pure ASCII (Zero-bloat, sin fuentes externas pesadas ni neón)</td>
+            </tr>
+            <tr>
+              <td class="text-muted">INFRAESTRUCTURA</td>
+              <td>Cloudflare Pages Global Edge Network</td>
+            </tr>
+            <tr>
+              <td class="text-muted">CONTROL DE VERSIONES</td>
+              <td>Git Flow Estricto</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</AsciiLayout>

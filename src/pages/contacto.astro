@@ -1,0 +1,80 @@
+---
+import AsciiLayout from '../layouts/AsciiLayout.astro';
+
+const contacts = [
+  {
+    channel: "GITHUB",
+    handle: "@Svein05",
+    link: "https://github.com/Svein05",
+    description: "Repositorios de código, colaboraciones y proyectos activos."
+  },
+  {
+    channel: "CORREO ELECTRÓNICO",
+    handle: "contacto@svein.dev",
+    link: "mailto:contacto@svein.dev",
+    description: "Consultas profesionales, propuestas de proyectos y contacto directo."
+  }
+];
+---
+
+<AsciiLayout title="Svein // Contacto" description="Canales de contacto y comunicación profesional">
+  <!-- Main Contact Box -->
+  <section class="ascii-box">
+    <div class="ascii-box-header">
+      <span class="ascii-box-title">
+        <span class="text-green">&gt;</span>
+        <span>CANALES DE COMUNICACIÓN</span>
+      </span>
+      <span>DISPONIBLE</span>
+    </div>
+    <div class="ascii-box-body">
+      <h2 style="font-size: 1.25rem; margin-bottom: 0.75rem;">¿Tienes un proyecto o consulta técnica?</h2>
+      <p class="text-muted" style="margin-bottom: 1.5rem;">
+        Estoy abierto a participar en proyectos interesantes, colaboraciones técnicas y desarrollo de software de calidad. El medio más rápido de contacto es a través de GitHub o correo electrónico.
+      </p>
+
+      <div class="ascii-table-responsive">
+        <table class="ascii-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;">Canal</th>
+              <th style="width: 35%;">Identificador / Enlace</th>
+              <th style="width: 40%;">Propósito</th>
+            </tr>
+          </thead>
+          <tbody>
+            {contacts.map((c) => (
+              <tr>
+                <td><strong class="text-main">{c.channel}</strong></td>
+                <td>
+                  <a href={c.link} target={c.link.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
+                    {c.handle} ↗
+                  </a>
+                </td>
+                <td class="text-muted">{c.description}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Status & Guidelines Box -->
+  <section class="ascii-box">
+    <div class="ascii-box-header">
+      <span class="ascii-box-title">
+        <span class="text-cyan">i</span>
+        <span>DISPONIBILIDAD Y RESPUESTA</span>
+      </span>
+      <span>ESTADO ACTUAL</span>
+    </div>
+    <div class="ascii-box-body">
+      <p class="text-muted">
+        • <strong>Tiempo habitual de respuesta:</strong> 24 a 48 horas hábiles.<br />
+        • <strong>Modalidad:</strong> Remoto / Asíncrono.<br />
+        • <strong>Áreas de interés:</strong> Desarrollo web fullstack, tooling, APIs y optimización de rendimiento.
+      </p>
+    </div>
+  </section>
+</AsciiLayout>
